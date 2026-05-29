@@ -1,0 +1,17 @@
+{
+  "name": "openfoodfacts-neon-api",
+  "version": "1.0.0",
+  "description": "Custom API to fetch, cache and customize Open Food Facts products using Neon Postgres",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "node api/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
+  }
+}
