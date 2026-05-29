@@ -816,7 +816,7 @@ function getDocsHtml() {
         </div>
 
         <footer>
-          <p>Powered by <a href="https://world.openfoodfacts.org/" target="_blank">Open Food Facts Data</a> and <a href="https://neon.tech" target="_blank">Neon PostgreSQL</a>.</p>
+          <p>Made by <a href="https://zoubaa.dev/" target="_blank">Zoubaa Mohammed</a></p>
         </footer>
       </div>
 
