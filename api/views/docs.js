@@ -33,17 +33,26 @@ function getDocsHtml() {
           padding: 0;
         }
 
+        html, body {
+          overflow-x: hidden;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
         body {
           font-family: 'Outfit', sans-serif;
           background-color: var(--bg-main);
           color: var(--text-main);
           line-height: 1.6;
-          padding: 2rem 1.5rem;
+          padding: 2rem 0;
         }
 
         .container {
+          width: 100%;
           max-width: 1200px;
           margin: 0 auto;
+          padding: 0 1rem;
         }
 
         header {
@@ -66,13 +75,14 @@ function getDocsHtml() {
         }
 
         h1 {
-          font-size: 3.25rem;
+          font-size: clamp(2rem, 6vw, 3.25rem);
           font-weight: 800;
           letter-spacing: -0.03em;
           background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           margin-bottom: 0.75rem;
+          line-height: 1.1;
         }
 
         .subtitle {
@@ -124,7 +134,7 @@ function getDocsHtml() {
         .grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 2.5rem;
+          gap: 2rem;
           align-items: start;
         }
 
@@ -135,9 +145,9 @@ function getDocsHtml() {
         }
 
         .section-title {
-          font-size: 1.6rem;
+          font-size: 1.4rem;
           font-weight: 700;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
           letter-spacing: -0.01em;
           border-left: 4px solid var(--accent-blue);
           padding-left: 0.75rem;
@@ -147,16 +157,22 @@ function getDocsHtml() {
           background-color: var(--bg-card);
           border: 1px solid var(--border);
           border-radius: var(--radius);
-          padding: 2rem;
-          margin-bottom: 1.75rem;
+          padding: 1.25rem;
+          margin-bottom: 1.25rem;
           transition: var(--transition);
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          overflow: hidden;
+        }
+
+        @media (min-width: 640px) {
+          .card {
+            padding: 1.75rem;
+          }
         }
 
         .card:hover {
           border-color: rgba(59, 130, 246, 0.3);
-          transform: translateY(-2px);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
         }
 
         .endpoint-header {
@@ -232,13 +248,18 @@ function getDocsHtml() {
         .input-group {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
+          gap: 0.65rem;
+          margin-bottom: 1.25rem;
         }
 
-        @media (min-width: 640px) {
+        .input-group-row {
+          flex-direction: column;
+        }
+
+        @media (min-width: 480px) {
           .input-group-row {
             flex-direction: row;
+            align-items: center;
           }
         }
 
@@ -287,17 +308,25 @@ function getDocsHtml() {
 
         .code-block-container {
           position: relative;
+          margin-top: 0.5rem;
         }
 
         .code-block {
           background-color: #080c14;
           border-radius: 8px;
-          padding: 1.25rem;
+          padding: 1.1rem;
+          padding-right: 3.5rem; /* space for copy button */
           font-family: 'JetBrains Mono', monospace;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           overflow-x: auto;
           border: 1px solid var(--border);
-          max-height: 380px;
+          max-height: 320px;
+        }
+
+        .code-block pre {
+          white-space: pre-wrap;
+          word-break: break-word;
+          color: #e6edf3;
         }
 
         .btn-copy {
@@ -319,23 +348,37 @@ function getDocsHtml() {
           color: var(--text-main);
         }
 
+        .table-wrapper {
+          width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin: 1rem 0 1.5rem 0;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          background-color: rgba(255, 255, 255, 0.01);
+        }
+
         .params-table {
           width: 100%;
           border-collapse: collapse;
-          margin: 1rem 0 1.5rem 0;
           font-size: 0.9rem;
+          min-width: 500px; /* Forces readable scrollable columns on small widths */
         }
 
         .params-table th, .params-table td {
           text-align: left;
-          padding: 0.75rem;
+          padding: 0.75rem 1rem;
           border-bottom: 1px solid var(--border);
+        }
+
+        .params-table tr:last-child td {
+          border-bottom: none;
         }
 
         .params-table th {
           color: var(--text-muted);
           font-weight: 600;
-          background: rgba(255, 255, 255, 0.01);
+          border-bottom: 1px solid var(--border);
         }
 
         .param-name {
@@ -350,71 +393,36 @@ function getDocsHtml() {
           color: var(--text-muted);
         }
 
-        /* Product Visualizer styles */
-        .product-visual {
-          margin-top: 1.5rem;
-          border-top: 1px solid var(--border);
-          padding-top: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          gap: 1.25rem;
-        }
-
-        @media (min-width: 640px) {
-          .product-visual {
-            flex-direction: row;
-          }
-        }
-
+        /* ─── Product Visualizer ─── */
         .product-img-box {
-          width: 100%;
-          max-width: 120px;
-          height: 120px;
-          border-radius: 8px;
+          width: 110px;
+          height: 110px;
+          border-radius: 10px;
           overflow: hidden;
-          background-color: rgba(255, 255, 255, 0.03);
+          background-color: rgba(255, 255, 255, 0.04);
           border: 1px solid var(--border);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          margin: 0 auto;
         }
 
         .product-img-box img {
-          max-width: 100%;
-          max-height: 100%;
-          object-fit: contain;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .product-details {
           flex: 1;
+          min-width: 0;
         }
 
         .product-title {
-          font-size: 1.25rem;
+          font-size: 1.05rem;
           font-weight: 700;
-          margin-bottom: 0.5rem;
-          text-align: center;
-        }
-
-        @media (min-width: 640px) {
-          .product-title {
-            text-align: left;
-          }
-        }
-
-        .nutri-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0.5rem;
-          font-size: 0.85rem;
-        }
-
-        @media (min-width: 480px) {
-          .nutri-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
+          margin-bottom: 0.4rem;
+          word-break: break-word;
         }
 
         .nutri-tag {
@@ -428,41 +436,52 @@ function getDocsHtml() {
 
         .nutri-label {
           color: var(--text-muted);
-          font-size: 0.75rem;
+          font-size: 0.72rem;
+          text-transform: uppercase;
+          letter-spacing: 0.03em;
         }
 
         .nutri-value {
           font-weight: 700;
           font-family: 'JetBrains Mono', monospace;
+          font-size: 0.88rem;
           color: var(--text-main);
         }
 
+        /* ─── Scraper Product List ─── */
         .scraped-list-preview {
-          margin-top: 1rem;
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
-          max-height: 250px;
+          max-height: 220px;
           overflow-y: auto;
+          scrollbar-width: thin;
+          scrollbar-color: var(--border) transparent;
         }
 
         .scraped-item {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          padding: 0.5rem;
+          padding: 0.6rem 0.75rem;
           background: rgba(255, 255, 255, 0.02);
-          border-radius: 6px;
+          border-radius: 8px;
           border: 1px solid var(--border);
+          transition: var(--transition);
+        }
+
+        .scraped-item:hover {
+          background: rgba(255, 255, 255, 0.04);
+          border-color: rgba(59,130,246,0.2);
         }
 
         .scraped-img {
-          width: 36px;
-          height: 36px;
-          object-fit: contain;
-          border-radius: 4px;
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 6px;
           background: white;
-          padding: 2px;
+          flex-shrink: 0;
         }
 
         .scraped-info {
@@ -471,7 +490,7 @@ function getDocsHtml() {
         }
 
         .scraped-name {
-          font-size: 0.85rem;
+          font-size: 0.87rem;
           font-weight: 600;
           white-space: nowrap;
           overflow: hidden;
@@ -480,17 +499,18 @@ function getDocsHtml() {
 
         .scraped-code {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           color: var(--text-muted);
         }
 
+        /* ─── Footer ─── */
         footer {
           text-align: center;
-          margin-top: 6rem;
+          margin-top: 5rem;
           color: var(--text-muted);
           font-size: 0.9rem;
           border-top: 1px solid var(--border);
-          padding: 2.5rem 0;
+          padding: 2rem 0;
         }
 
         footer a {
@@ -506,6 +526,55 @@ function getDocsHtml() {
           0% { transform: scale(0.9); opacity: 0.6; }
           50% { transform: scale(1.1); opacity: 1; }
           100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        .playground-card {
+          position: relative;
+        }
+
+        @media (min-width: 1024px) {
+          .playground-card {
+            position: sticky;
+            top: 1.5rem;
+            max-height: calc(100vh - 3rem);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+          }
+        }
+
+
+        code {
+          font-family: 'JetBrains Mono', monospace;
+          background: rgba(255,255,255,0.07);
+          padding: 0.1em 0.4em;
+          border-radius: 4px;
+          font-size: 0.9em;
+        }
+
+        .nutri-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
+
+        @media (min-width: 480px) {
+          .nutri-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        .product-visual {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        @media (min-width: 480px) {
+          .product-visual {
+            flex-direction: row;
+            align-items: flex-start;
+          }
         }
       </style>
     </head>
@@ -556,24 +625,26 @@ function getDocsHtml() {
                 </div>
               </div>
               <p class="description">Queries your Neon cache database first. If not found, requests product data from Open Food Facts, formats/caches name, barcode, custom image and nutrition facts, and returns it.</p>
-              <table class="params-table">
-                <thead>
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Required</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="param-name">barcode</td>
-                    <td class="param-type">string</td>
-                    <td>Yes</td>
-                    <td>The standard product barcode (e.g., <code>3017670149729</code>)</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-wrapper">
+                <table class="params-table">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="param-name">barcode</td>
+                      <td class="param-type">string</td>
+                      <td>Yes</td>
+                      <td>The standard product barcode (e.g., <code>3017670149729</code>)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <div class="playground-title">Code Example (Fetch)</div>
               <div class="code-block-container">
                 <button class="btn-copy" onclick="copyText('fetch-one-code')">Copy</button>
@@ -592,30 +663,32 @@ function getDocsHtml() {
                 </div>
               </div>
               <p class="description">Scrape and automatically cache Moroccan products from Open Food Facts into your database.</p>
-              <table class="params-table">
-                <thead>
-                  <tr>
-                    <th>Query Parameter</th>
-                    <th>Type</th>
-                    <th>Required</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="param-name">page</td>
-                    <td class="param-type">number</td>
-                    <td>No</td>
-                    <td>Page number to fetch (default: <code>1</code>)</td>
-                  </tr>
-                  <tr>
-                    <td class="param-name">page_size</td>
-                    <td class="param-type">number</td>
-                    <td>No</td>
-                    <td>Products per page (default: <code>50</code>)</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-wrapper">
+                <table class="params-table">
+                  <thead>
+                    <tr>
+                      <th>Query Parameter</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="param-name">page</td>
+                      <td class="param-type">number</td>
+                      <td>No</td>
+                      <td>Page number to fetch (default: <code>1</code>)</td>
+                    </tr>
+                    <tr>
+                      <td class="param-name">page_size</td>
+                      <td class="param-type">number</td>
+                      <td>No</td>
+                      <td>Products per page (default: <code>50</code>)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <div class="playground-title">Code Example (Fetch)</div>
               <div class="code-block-container">
                 <button class="btn-copy" onclick="copyText('fetch-scrape-code')">Copy</button>
@@ -634,32 +707,34 @@ function getDocsHtml() {
                 </div>
               </div>
               <p class="description">Customize cached product fields (such as updating names, overriding photos you do not like, or editing nutrition facts).</p>
-              <table class="params-table">
-                <thead>
-                  <tr>
-                    <th>Body Field</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="param-name">name</td>
-                    <td class="param-type">string</td>
-                    <td>Custom name for the product</td>
-                  </tr>
-                  <tr>
-                    <td class="param-name">image_url</td>
-                    <td class="param-type">string</td>
-                    <td>Custom image URL to override the Open Food Facts photo</td>
-                  </tr>
-                  <tr>
-                    <td class="param-name">nutrition_facts</td>
-                    <td class="param-type">object</td>
-                    <td>JSON object containing dynamic nutrient key-values</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-wrapper">
+                <table class="params-table">
+                  <thead>
+                    <tr>
+                      <th>Body Field</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="param-name">name</td>
+                      <td class="param-type">string</td>
+                      <td>Custom name for the product</td>
+                    </tr>
+                    <tr>
+                      <td class="param-name">image_url</td>
+                      <td class="param-type">string</td>
+                      <td>Custom image URL to override the Open Food Facts photo</td>
+                    </tr>
+                    <tr>
+                      <td class="param-name">nutrition_facts</td>
+                      <td class="param-type">object</td>
+                      <td>JSON object containing dynamic nutrient key-values</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <div class="playground-title">Request Body Example</div>
               <div class="code-block-container">
                 <button class="btn-copy" onclick="copyText('patch-body-code')">Copy</button>
@@ -684,7 +759,7 @@ function getDocsHtml() {
           <!-- Interactive Playground Sidebar -->
           <div>
             <h2 class="section-title">API Playground</h2>
-            <div class="card" style="position: sticky; top: 2rem;">
+            <div class="card playground-card">
               <p class="description" style="margin-bottom: 1.25rem;">Test the API directly in your browser. Enter parameters below to query live.</p>
               
               <!-- Action 1: Scrape -->
