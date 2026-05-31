@@ -594,7 +594,7 @@ function getDocsHtml() {
       <div class="container">
         <header>
           <h1>Food Cache API</h1>
-          <p class="subtitle">A curated API for Moroccan food products &mdash; built and maintained by <strong style="color: var(--text-main); font-weight: 500;">Zoubaa Mohammed</strong>, powered by Neon PostgreSQL.</p>
+          <p class="subtitle">A curated API for Moroccan food products &mdash; built and maintained by <a href="https://zoubaa.dev/" target="_blank" style="color: var(--text-main); font-weight: 500; text-decoration: underline;">Zoubaa Mohammed</a>, powered by Neon PostgreSQL.</p>
           <div class="badge-container">
             <span class="badge badge-live">
               <span class="pulse-dot"></span>

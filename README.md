@@ -1,6 +1,6 @@
 # Moroccan Food API Cache
 
-A curated API for Moroccan food products, built and maintained by Zoubaa Mohammed and powered by Neon PostgreSQL.
+A curated API for Moroccan food products, built and maintained by [Zoubaa Mohammed](https://zoubaa.dev/) and powered by Neon PostgreSQL.
 
 ## Base URL
 All API requests should be made to:
