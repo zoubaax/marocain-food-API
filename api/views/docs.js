@@ -262,13 +262,16 @@ function getDocsHtml() {
           flex-direction: column;
           gap: 0.65rem;
           margin-bottom: 1.25rem;
+          width: 100%;
         }
 
         .input-group-row {
           flex-direction: column;
+          display: flex;
+          gap: 0.65rem;
         }
 
-        @media (min-width: 480px) {
+        @media (min-width: 580px) {
           .input-group-row {
             flex-direction: row;
             align-items: center;
@@ -276,7 +279,7 @@ function getDocsHtml() {
         }
 
         input {
-          flex: 1;
+          width: 100%;
           background-color: var(--bg-input);
           border: 1px solid var(--border);
           border-radius: 8px;
@@ -308,6 +311,13 @@ function getDocsHtml() {
           justify-content: center;
           gap: 0.5rem;
           white-space: nowrap;
+          width: 100%;
+        }
+
+        @media (min-width: 580px) {
+          button {
+            width: auto;
+          }
         }
 
         button:hover {
@@ -800,7 +810,7 @@ function getDocsHtml() {
                 <div class="input-group">
                   <input type="text" id="patch-name" placeholder="Custom Product Name">
                   <input type="text" id="patch-image" placeholder="Custom Image URL">
-                  <button onclick="testPatch()" style="background-color: var(--accent-purple); align-self: flex-start;">
+                  <button onclick="testPatch()" style="background-color: var(--accent-purple);">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"/></svg>
                     Update Product
                   </button>
