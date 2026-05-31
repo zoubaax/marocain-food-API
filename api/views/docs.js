@@ -45,7 +45,7 @@ function getDocsHtml() {
           background-color: var(--bg-main);
           color: var(--text-main);
           line-height: 1.6;
-          padding: 2rem 0;
+          padding: 1.25rem 0;
         }
 
         .container {
@@ -53,6 +53,15 @@ function getDocsHtml() {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 1rem;
+        }
+
+        @media (min-width: 640px) {
+          body {
+            padding: 2rem 0;
+          }
+          .container {
+            padding: 0 1.5rem;
+          }
         }
 
         header {
@@ -87,10 +96,12 @@ function getDocsHtml() {
 
         .subtitle {
           color: var(--text-muted);
-          font-size: 1.2rem;
-          max-width: 700px;
+          font-size: clamp(0.9rem, 3.5vw, 1.15rem);
+          max-width: 600px;
           margin: 0 auto 1.75rem auto;
           font-weight: 300;
+          line-height: 1.65;
+          padding: 0 0.5rem;
         }
 
         .badge-container {
@@ -221,10 +232,11 @@ function getDocsHtml() {
 
         .path {
           font-family: 'JetBrains Mono', monospace;
-          font-size: 1.05rem;
+          font-size: clamp(0.82rem, 2.5vw, 1.05rem);
           font-weight: 500;
           color: var(--text-main);
           word-break: break-all;
+          overflow-wrap: anywhere;
         }
 
         .description {
@@ -582,7 +594,7 @@ function getDocsHtml() {
       <div class="container">
         <header>
           <h1>Food Cache API</h1>
-          <p class="subtitle">A custom, high-performance caching proxy wrapper for the Open Food Facts API powered by Neon PostgreSQL.</p>
+          <p class="subtitle">A curated API for Moroccan food products &mdash; built and maintained by <strong style="color: var(--text-main); font-weight: 500;">Zoubaa Mohammed</strong>, powered by Neon PostgreSQL.</p>
           <div class="badge-container">
             <span class="badge badge-live">
               <span class="pulse-dot"></span>
